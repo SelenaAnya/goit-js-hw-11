@@ -9,6 +9,8 @@ if (galleryContainer) {
 }
 
 export function createGallery(images) {
+  clearGallery();
+
   const markup = images.map(image => `
     <li class="gallery-item" style="list-style: none;">
       <a href="${image.largeImageURL}">
@@ -30,11 +32,11 @@ export function createGallery(images) {
   // show loader
   const imagesElements = document.querySelectorAll(".image-container img");
   imagesElements.forEach((img) => {
-    const loader = img.closest(".image-container").querySelector(".loader"); // Коректне отримання loader
-    loader.style.display = "block"; // Показати loader
+    const loader = img.closest(".image-container").querySelector(".loader");
+    loader.style.display = "block";
 
     img.addEventListener("load", () => {
-      loader.style.display = "none"; // Сховати loader після завантаження
+      loader.style.display = "none";
     });
   });
 
