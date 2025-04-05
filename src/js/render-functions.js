@@ -26,42 +26,15 @@ export function createGallery(images) {
 
   galleryContainer.innerHTML = markup;
 
-  galleryContainer.style.listStyle = "none";
-  galleryContainer.style.width = "1200px";
-  galleryContainer.style.display = "grid";
-  galleryContainer.style.textAlign = "center";
-  galleryContainer.style.gridTemplateColumns = "repeat(3, 1fr)";
-  galleryContainer.style.gap = "24px";
-  galleryContainer.style.margin = "0 auto";
-  galleryContainer.style.justifyContent = "center";
-  galleryContainer.style.alignItems = "center";
-  galleryContainer.style.marginTop = "108px";
+  // show loader
+  const imagesElements = document.querySelectorAll(".image-container img");
+  imagesElements.forEach((img) => {
+    const loader = img.previousElementSibling; // Отримуємо loader
+    loader.style.display = "block"; // Показати loader
 
-  const infoItems = document.querySelectorAll(".info-item");
-
-  infoItems.forEach((item) => {
-    item.style.display = "flex";
-    item.style.flexDirection = "column";
-    item.style.alignItems = "center";
-    item.style.marginLeft = "20px";
-  });
-
-  const values = document.querySelectorAll(".info-value");
-
-  values.forEach((value) => {
-    value.style.fontWeight = "600";
-  });
-
-  const infoBlocks = document.querySelectorAll(".image-info");
-  infoBlocks.forEach((block) => {
-    block.style.display = "flex";
-    block.style.justifyContent = "center";
-    block.style.alignItems = "center";
-    block.style.maxWidth = "100%";
-    block.style.textAlign = "center";
-    block.style.fontSize = "12px";
-    block.style.border = "1px solid #808080";
-    block.style.padding = "10px";
+    img.addEventListener("load", () => {
+      loader.style.display = "none"; // Сховати loader після завантаження
+    });
   });
 
   if (!lightbox) {
@@ -69,6 +42,51 @@ export function createGallery(images) {
   } else {
     lightbox.refresh();
   }
+}
+
+galleryContainer.style.listStyle = "none";
+galleryContainer.style.width = "1200px";
+galleryContainer.style.display = "grid";
+galleryContainer.style.textAlign = "center";
+galleryContainer.style.gridTemplateColumns = "repeat(3, 1fr)";
+galleryContainer.style.gap = "24px";
+galleryContainer.style.margin = "0 auto";
+galleryContainer.style.justifyContent = "center";
+galleryContainer.style.alignItems = "center";
+galleryContainer.style.marginTop = "108px";
+
+const infoItems = document.querySelectorAll(".info-item");
+
+infoItems.forEach((item) => {
+  item.style.display = "flex";
+  item.style.flexDirection = "column";
+  item.style.alignItems = "center";
+  item.style.marginLeft = "20px";
+});
+
+const values = document.querySelectorAll(".info-value");
+
+values.forEach((value) => {
+  value.style.fontWeight = "600";
+});
+
+const infoBlocks = document.querySelectorAll(".image-info");
+infoBlocks.forEach((block) => {
+  block.style.display = "flex";
+  block.style.justifyContent = "center";
+  block.style.alignItems = "center";
+  block.style.maxWidth = "100%";
+  block.style.textAlign = "center";
+  block.style.fontSize = "12px";
+  block.style.border = "1px solid #808080";
+  block.style.padding = "10px";
+});
+
+if (!lightbox) {
+  lightbox = new SimpleLightbox(".gallery a");
+} else {
+  lightbox.refresh();
+}
 }
 
 // Styling gallery cards
