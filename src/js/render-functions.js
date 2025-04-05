@@ -56,8 +56,18 @@ galleryContainer.style.justifyContent = "center";
 galleryContainer.style.alignItems = "center";
 galleryContainer.style.marginTop = "108px";
 
-const infoItems = document.querySelectorAll(".info-item");
+const infoBlocks = document.querySelectorAll(".image-info");
+infoBlocks.forEach((block) => {
+  block.style.display = "flex";
+  block.style.justifyContent = "center";
+  block.style.alignItems = "center";
+  block.style.textAlign = "center";
+  block.style.fontSize = "12px";
+  block.style.border = "1px solid #808080";
+  block.style.padding = "10px";
+});
 
+const infoItems = document.querySelectorAll(".info-item");
 infoItems.forEach((item) => {
   item.style.display = "flex";
   item.style.flexDirection = "column";
@@ -66,21 +76,8 @@ infoItems.forEach((item) => {
 });
 
 const values = document.querySelectorAll(".info-value");
-
 values.forEach((value) => {
   value.style.fontWeight = "600";
-});
-
-const infoBlocks = document.querySelectorAll(".image-info");
-infoBlocks.forEach((block) => {
-  block.style.display = "flex";
-  block.style.justifyContent = "center";
-  block.style.alignItems = "center";
-  block.style.maxWidth = "100%";
-  block.style.textAlign = "center";
-  block.style.fontSize = "12px";
-  block.style.border = "1px solid #808080";
-  block.style.padding = "10px";
 });
 
 if (!lightbox) {
@@ -88,6 +85,7 @@ if (!lightbox) {
 } else {
   lightbox.refresh();
 }
+
 
 // Styling gallery cards
 const galleryItems = document.querySelectorAll(".gallery-item");
