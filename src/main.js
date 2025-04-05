@@ -46,6 +46,8 @@ form.addEventListener("submit", async (event) => {
       return;
     }
 
+    form.reset();
+
     createGallery(data.hits);
 
   } catch (error) {
