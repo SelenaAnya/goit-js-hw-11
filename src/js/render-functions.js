@@ -87,19 +87,19 @@ galleryItems.forEach((item) => {
     item.style.transform = "scale(1)";
   });
 
-const infoBlocks = document.querySelectorAll(".image-info");
+  const infoBlocks = document.querySelectorAll(".image-info");
 
-infoBlocks.forEach((block) => {
-  block.style.display = "flex";
-  block.style.flexWrap = "wrap";
-  block.style.justifyContent = "center";
-  block.style.textAlign = "center";
-  block.style.fontSize = "12px";
-  block.style.border = "1px solid #808080";
-  block.style.padding = "10px";
-  block.style.margin = "0";
-});
-  
+  infoBlocks.forEach((block) => {
+    block.style.display = "flex";
+    block.style.flexWrap = "wrap";
+    block.style.justifyContent = "center";
+    block.style.textAlign = "center";
+    block.style.fontSize = "12px";
+    block.style.border = "1px solid #808080";
+    block.style.padding = "10px";
+    block.style.margin = "0";
+  });
+
 });
 
 export function clearGallery() {
@@ -107,9 +107,16 @@ export function clearGallery() {
 }
 
 export function showLoader() {
-  document.querySelector(".loader").classList.add("visible");
+  const loader = document.querySelector(".loader");
+  if (loader) {
+    loader.classList.add("visible"); // show loader
+  }
 }
 
 export function hideLoader() {
-  document.querySelector(".loader").classList.remove("visible");
+  const loader = document.querySelector(".loader");
+  if (loader) {
+    loader.classList.remove("visible"); // hide loader
+  }
 }
+

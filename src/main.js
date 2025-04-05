@@ -6,11 +6,12 @@ import "izitoast/dist/css/iziToast.min.css";
 const form = document.querySelector(".form");
 const searchInput = document.querySelector("input[name='search-text']");
 
+
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
-  
+
   const query = searchInput.value.trim();
-  
+
   if (!query) {
     iziToast.warning({
       title: "Увага",
@@ -20,25 +21,39 @@ form.addEventListener("submit", async (event) => {
     return;
   }
 
-  showLoader();
-  clearGallery();
-
-  const data = await getImagesByQuery(query);
-  hideLoader();
-
-  if (!data || data.hits.length === 0) {
-    iziToast.error({
-      title: "Помилка",
-      message: "Sorry, there are no images matching your search query. Please try again!",
+  if (query.length < 3) {
+    iziToast.warning({
+      title: "Увага",
+      message: "Мінімальна довжина пошуку - 3 символи!",
       position: "topRight",
     });
     return;
   }
 
-  createGallery(data.hits);
+  showLoader();
+  clearGallery();
 
+  try {
+    const data = await getImagesByQuery(query);
+    hideLoader(); // 
 
+    if (!data || data.hits.length === 0) {
+      iziToast.error({
+        title: "Помилка",
+        message: "Sorry, there are no images matching your search query. Please try again!",
+        position: "topRight",
+      });
+      return;
+    }
+
+    createGallery(data.hits);
+
+  } catch (error) {
+    hideLoader();
+    console.error("Помилка під час отримання зображень:", error);
+  }
 });
+
 
 if (searchInput) {
   searchInput.style.width = "300px";
@@ -94,5 +109,4 @@ if (searchButton) {
     searchButton.style.transform = "scale(1)";
   });
 }
-
 
