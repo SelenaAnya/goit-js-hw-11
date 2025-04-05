@@ -21,12 +21,12 @@ if (galleryContainer) {
 
 export function createGallery(images) {
   const markup = images.map(image => `
-    <li class="gallery-item" style="list-style: none; >
+    <li class="gallery-item" style="list-style: none; min-width: 360px; background-color:rgba(55, 101, 225, 0.33);" >
       <a href="${image.largeImageURL}">
         <img src="${image.webformatURL}" alt="${image.tags}" loading="lazy" 
         style="min-width: 360px; max-width: 100%; height: auto; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
       </a>
-      <div class="image-info" style="display: flex; justify-content: space-between; 
+      <div class="image-info" style="display: flex; hight: 48px; justify-content: space-between; 
       text-align: center; font-size: 14px; padding: 4px 20px; 
       border: 1px solid #808080";>
         <p>Likes ${image.likes}</p>
@@ -65,6 +65,7 @@ if (galleryContainer) {
   galleryContainer.style.justifyContent = "center";
   galleryContainer.style.alignItems = "center";
   galleryContainer.style.backgroundColor = "#f5f5f5";
+  galleryContainer.style.marginTop = "108px"
 }
 
 // Styling gallery cards
