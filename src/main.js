@@ -38,17 +38,17 @@ form.addEventListener("submit", async (event) => {
   createGallery(data.hits);
 
 
-  if (form) {
-    form.style.display = "flex";
-    form.style.alignItems = "center";
-    form.style.justifyContent = "center";
-    form.style.gap = "16px";
-    form.style.position = "absolute";
-    form.style.top = "50%";
-    form.style.left = "50%";
-    form.style.transform = "translate(-50%, -50%)";
-    form.style.marginBottom = "32px";
-  }
+  // if (form) {
+  //   form.style.display = "flex";
+  //   form.style.alignItems = "center";
+  //   form.style.justifyContent = "center";
+  //   form.style.gap = "16px";
+  //   form.style.position = "absolute";
+  //   form.style.top = "50%";
+  //   form.style.left = "50%";
+  //   form.style.transform = "translate(-50%, -50%)";
+  //   form.style.marginBottom = "32px";
+  // }
 
 });
 
