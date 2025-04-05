@@ -30,7 +30,7 @@ export function createGallery(images) {
   // show loader
   const imagesElements = document.querySelectorAll(".image-container img");
   imagesElements.forEach((img) => {
-    const loader = img.previousElementSibling; // Отримуємо loader
+    const loader = img.closest(".image-container").querySelector(".loader"); // Коректне отримання loader
     loader.style.display = "block"; // Показати loader
 
     img.addEventListener("load", () => {

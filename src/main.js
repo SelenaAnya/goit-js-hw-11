@@ -56,7 +56,6 @@ form.addEventListener("submit", async (event) => {
   }
 });
 
-
 if (searchInput) {
   searchInput.style.width = "300px";
   searchInput.style.padding = "10px";
