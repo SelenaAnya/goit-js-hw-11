@@ -1,4 +1,45 @@
+import { getImagesByQuery } from "./js/pixabay-api.js";
+import { createGallery, clearGallery, showLoader, hideLoader } from "./js/render-functions.js";
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
+
+const form = document.querySelector(".form");
 const searchInput = document.querySelector("input[name='search-text']");
+
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  
+  const query = searchInput.value.trim();
+  
+  if (!query) {
+    iziToast.warning({
+      title: "Увага",
+      message: "Поле пошуку не може бути порожнім!",
+      position: "topRight",
+    });
+    return;
+  }
+
+  showLoader();
+  clearGallery();
+
+  const data = await getImagesByQuery(query);
+  hideLoader();
+
+  if (!data || data.hits.length === 0) {
+    iziToast.error({
+      title: "Помилка",
+      message: "Sorry, there are no images matching your search query. Please try again!",
+      position: "topRight",
+    });
+    return;
+  }
+
+  createGallery(data.hits);
+// });
+
+
+// const searchInput = document.querySelector("input[name='search-text']");
 
 if (searchInput) {
   searchInput.style.width = "300px";
@@ -55,14 +96,15 @@ if (searchButton) {
   });
 }
 
-const form = document.querySelector("form");
+// const form = document.querySelector("form");
 
 if (form) {
   form.style.alignItems = "center";
   form.style.gap = "16px";
   form.style.position = "absolute";
-  form.style.top = "50%";
-  form.style.left = "50%";
-  form.style.transform = "translate(-50%, -50%)";
-  
-}
+  form.style.top = "36px";
+  form.style.margin = "0 auto";
+  form.style.marginBottom = "32px";
+  form.style.transform = "translate(50%)";
+}  
+});
