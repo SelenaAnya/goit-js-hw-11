@@ -36,10 +36,20 @@ form.addEventListener("submit", async (event) => {
   }
 
   createGallery(data.hits);
-// });
 
 
-// const searchInput = document.querySelector("input[name='search-text']");
+if (form) {
+  form.style.display = "flex"; // Додаємо flex-контейнер
+  form.style.alignItems = "center";
+  form.style.gap = "16px";
+  form.style.position = "absolute";
+  form.style.top = "36px";
+  form.style.left = "50%"; // Виправлено, бо `translate(50%)` не працює коректно
+  form.style.transform = "translateX(-50%)"; // Центруємо форму горизонтально
+  form.style.marginBottom = "32px";
+
+}  
+});
 
 if (searchInput) {
   searchInput.style.width = "300px";
@@ -96,15 +106,4 @@ if (searchButton) {
   });
 }
 
-// const form = document.querySelector("form");
 
-if (form) {
-  form.style.alignItems = "center";
-  form.style.gap = "16px";
-  form.style.position = "absolute";
-  form.style.top = "36px";
-  form.style.margin = "0 auto";
-  form.style.marginBottom = "32px";
-  form.style.transform = "translate(50%)";
-}  
-});
