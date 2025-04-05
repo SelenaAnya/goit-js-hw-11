@@ -12,6 +12,7 @@ export function createGallery(images) {
   const markup = images.map(image => `
     <li class="gallery-item" style="list-style: none;">
       <a href="${image.largeImageURL}">
+        <div class="loader"></div>
         <img src="${image.webformatURL}" alt="${image.tags}" loading="lazy" 
         style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); object-fit: cover;">
       </a>
