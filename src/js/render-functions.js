@@ -88,7 +88,6 @@ if (!lightbox) {
 } else {
   lightbox.refresh();
 }
-}
 
 // Styling gallery cards
 const galleryItems = document.querySelectorAll(".gallery-item");
