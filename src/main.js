@@ -38,17 +38,18 @@ form.addEventListener("submit", async (event) => {
   createGallery(data.hits);
 
 
-if (form) {
-  form.style.display = "flex"; // Додаємо flex-контейнер
-  form.style.alignItems = "center";
-  form.style.gap = "16px";
-  form.style.position = "absolute";
-  form.style.top = "36px";
-  form.style.left = "50%"; // Виправлено, бо `translate(50%)` не працює коректно
-  form.style.transform = "translateX(-50%)"; // Центруємо форму горизонтально
-  form.style.marginBottom = "32px";
+  if (form) {
+    form.style.display = "flex";
+    form.style.alignItems = "center";
+    form.style.justifyContent = "center";
+    form.style.gap = "16px";
+    form.style.position = "absolute";
+    form.style.top = "50%";
+    form.style.left = "50%";
+    form.style.transform = "translate(-50%, -50%)";
+    form.style.marginBottom = "32px";
+  }
 
-}  
 });
 
 if (searchInput) {
@@ -62,7 +63,7 @@ if (searchInput) {
   searchInput.style.outline = "none";
   searchInput.style.transition = "0.3s";
 
-  // Ефект при фокусі
+  // Effect in focus
   searchInput.addEventListener("focus", () => {
     searchInput.style.borderColor = "#61dafb";
     searchInput.style.boxShadow = "0 0 10px rgba(97, 218, 251, 0.5)";
@@ -87,7 +88,7 @@ if (searchButton) {
   searchButton.style.cursor = "pointer";
   searchButton.style.transition = "0.3s";
 
-  // Ефект при наведенні
+  // Hovering effect
   searchButton.addEventListener("mouseover", () => {
     searchButton.style.backgroundColor = "#61dafb";
   });
@@ -96,7 +97,7 @@ if (searchButton) {
     searchButton.style.backgroundColor = "#4E35DE";
   });
 
-  // Ефект при кліку
+  // Effect on click
   searchButton.addEventListener("mousedown", () => {
     searchButton.style.transform = "scale(0.95)";
   });
