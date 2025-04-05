@@ -1,10 +1,16 @@
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
-const galleryContainer = document.querySelector(".gallery");
-let lightbox;
-
 export function createGallery(images) {
+  // Додаємо статичні елементи галереї
+  galleryContainer.innerHTML = `
+    <div class="gallery">
+      <a href="images/image1.jpg"><img src="images/thumbs/thumb1.jpg" alt="" title=""/></a>
+      <a href="images/image2.jpg"><img src="images/thumbs/thumb2.jpg" alt="" title="Beautiful Image"/></a>
+    </div>
+  `;
+
+  // Генерація динамічної розмітки
   const markup = images.map(image => `
     <li class="gallery-item">
       <a href="${image.largeImageURL}">
@@ -18,9 +24,9 @@ export function createGallery(images) {
       </div>
     </li>
   `).join("");
-  
-  galleryContainer.innerHTML = markup;
-  
+
+  galleryContainer.insertAdjacentHTML("beforeend", markup); // Додаємо нові зображення
+
   if (!lightbox) {
     lightbox = new SimpleLightbox(".gallery a");
   } else {
@@ -28,14 +34,3 @@ export function createGallery(images) {
   }
 }
 
-export function clearGallery() {
-  galleryContainer.innerHTML = "";
-}
-
-export function showLoader() {
-  document.querySelector(".loader").classList.add("visible");
-}
-
-export function hideLoader() {
-  document.querySelector(".loader").classList.remove("visible");
-}
