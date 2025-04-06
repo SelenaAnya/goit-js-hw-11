@@ -14,11 +14,13 @@ export function createGallery(images) {
   const markup = images.map(image => `
     <li class="gallery-item" style="list-style: none;">
       <a href="${image.largeImageURL}">
+      <div class="image-container">
         <div class="loader"></div>
         <img src="${image.webformatURL}" alt="${image.tags}" loading="lazy" 
         style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); object-fit: cover;">
+      </div>
       </a>
-      <div class="image-info">
+     <div class="image-info">
         <p class="info-item"><span class="info-value">Likes</span> ${image.likes}</p>
         <p class="info-item"><span class="info-value">Views</span> ${image.views}</p>
         <p class="info-item"><span class="info-value">Comments</span> ${image.comments}</p>
@@ -58,29 +60,6 @@ galleryContainer.style.justifyContent = "center";
 galleryContainer.style.alignItems = "center";
 galleryContainer.style.marginTop = "108px";
 
-const infoBlocks = document.querySelectorAll(".image-info");
-infoBlocks.forEach((block) => {
-  block.style.display = "flex";
-  block.style.justifyContent = "center";
-  block.style.alignItems = "center";
-  block.style.textAlign = "center";
-  block.style.fontSize = "12px";
-  block.style.border = "1px solid #808080";
-  block.style.padding = "10px";
-});
-
-const infoItems = document.querySelectorAll(".info-item");
-infoItems.forEach((item) => {
-  item.style.display = "flex";
-  item.style.flexDirection = "column";
-  item.style.alignItems = "center";
-  item.style.marginLeft = "20px";
-});
-
-const values = document.querySelectorAll(".info-value");
-values.forEach((value) => {
-  value.style.fontWeight = "600";
-});
 
 if (!lightbox) {
   lightbox = new SimpleLightbox(".gallery a");

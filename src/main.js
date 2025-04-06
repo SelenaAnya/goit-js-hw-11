@@ -111,3 +111,47 @@ if (searchButton) {
   });
 }
 
+const loadingMessage = document.querySelector(".loading-message");
+
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const query = searchInput.value.trim();
+
+  if (!query) {
+    iziToast.warning({
+      title: "Увага",
+      message: "Поле пошуку не може бути порожнім!",
+      position: "topRight",
+    });
+    return;
+  }
+
+  // ✅ Показуємо текст "Loading images..."
+  loadingMessage.style.display = "block";
+
+  showLoader();
+  clearGallery();
+
+  try {
+    const data = await getImagesByQuery(query);
+
+    if (!data || data.hits.length === 0) {
+      iziToast.error({
+        title: "Помилка",
+        message: "Sorry, there are no images matching your search query. Please try again!",
+        position: "topRight",
+      });
+      return;
+    }
+
+    createGallery(data.hits);
+
+  } catch (error) {
+    console.error("Помилка під час отримання зображень:", error);
+  } finally {
+    // ✅ Ховаємо повідомлення після завантаження
+    loadingMessage.style.display = "none";
+    hideLoader();
+  }
+});
