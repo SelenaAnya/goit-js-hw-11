@@ -5,7 +5,7 @@ import "izitoast/dist/css/iziToast.min.css";
 
 const form = document.querySelector(".form");
 const searchInput = document.querySelector("input[name='search-text']");
-
+const loadingMessage = document.querySelector(".loading-message");
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -30,7 +30,7 @@ form.addEventListener("submit", async (event) => {
     return;
   }
 
-  // ✅ Показуємо текст "Loading images..."
+  //  "Loading images..."
   loadingMessage.style.display = "block";
 
   showLoader();

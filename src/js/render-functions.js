@@ -15,7 +15,7 @@ export function createGallery(images) {
     <li class="gallery-item" style="list-style: none;">
       <a href="${image.largeImageURL}">
       <div class="image-container">
-        <div class="loader"></div>
+      <span class="loader visible"></span>
         <img src="${image.webformatURL}" alt="${image.tags}" loading="lazy" 
         style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); object-fit: cover;">
       </div>
@@ -31,14 +31,10 @@ export function createGallery(images) {
 
   galleryContainer.innerHTML = markup;
 
-  // show loader
-  const imagesElements = document.querySelectorAll(".image-container img");
-  imagesElements.forEach((img) => {
+  document.querySelectorAll(".image-container img").forEach((img) => {
     const loader = img.closest(".image-container").querySelector(".loader");
-    loader.style.display = "block";
-
     img.addEventListener("load", () => {
-      loader.style.display = "none";
+      loader.classList.remove("visible"); // hide loader
     });
   });
 
