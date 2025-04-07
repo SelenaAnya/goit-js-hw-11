@@ -33,9 +33,13 @@ export function createGallery(images) {
 
   document.querySelectorAll(".image-container img").forEach((img) => {
     const loader = img.closest(".image-container").querySelector(".loader");
-    img.addEventListener("load", () => {
-      loader.classList.remove("visible"); // hide loader
-    });
+    if (img.complete) {
+      loader.classList.remove("visible");
+    } else {
+      img.addEventListener("load", () => {
+        loader.classList.remove("visible");
+      });
+    }
   });
 
   if (!lightbox) {
