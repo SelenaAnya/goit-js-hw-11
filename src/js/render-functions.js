@@ -57,13 +57,6 @@ galleryContainer.style.alignItems = "center";
 galleryContainer.style.marginTop = "108px";
 
 
-if (!lightbox) {
-  lightbox = new SimpleLightbox(".gallery a");
-} else {
-  lightbox.refresh();
-}
-
-
 // Styling gallery cards
 const galleryItems = document.querySelectorAll(".gallery-item");
 
